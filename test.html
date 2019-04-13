@@ -1,0 +1,455 @@
+﻿
+<html>
+<head>
+    <title>極座標形式のラプラシアン</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+</head>
+<body>
+    \[ 	\frac{d}{dx} = sin \theta cos \varphi \frac{d}{dr} + \frac {cos \theta cos \varphi} {r}  \frac {d} {d\theta} - \frac {sin \varphi} {r sin \theta} \frac {d} {d\varphi}    \]
+
+    \[
+    \frac{d^2}{dx^2} =
+    sin \theta cos \varphi \frac{d}{dr} (sin \theta cos \varphi \frac{d}{dr}
+    + \frac {cos \theta cos \varphi} {r}  \frac {d} {d\theta} - \frac {sin \varphi} {r sin \theta} \frac {d} {d\varphi})
+    + \frac {cos \theta cos \varphi } {r} \frac {d} {d\theta} (sin \theta cos \varphi \frac{d}{dr} + \frac {cos \theta cos \varphi} {r} \frac {d} {d\theta}
+    - \frac {sin \varphi} {sin \theta} \frac {d} {d\varphi})
+    - \frac {sin \varphi} {r sin \theta} \frac {d} {d\varphi} (sin \theta cos \varphi \frac{d}{dr} + \frac {cos \theta cos \varphi} {r}  \frac {d} {d\theta} - \frac {sin \varphi} {r sin \theta}\frac {d} {d\varphi})
+    \]
+
+    \[
+    =
+    sin \theta cos \varphi \frac{d}{dr} (sin \theta cos \varphi \frac{d}{dr} )
+    + sin \theta cos \varphi \frac{d}{dr} ( \frac {cos \theta cos \varphi} {r}  \frac {d} {d\theta} )
+    + sin \theta cos \varphi \frac{d}{dr} (- \frac {sin \varphi} {r sin \theta} \frac {d} {d\varphi})
+    + \frac {cos \theta cos \varphi} {r} \frac {d} {d\theta} (sin \theta cos \varphi \frac{d}{dr} )
+    +  \frac {cos \theta cos \varphi} {r} \frac {d} {d\theta} (\frac {cos \theta cos \varphi} {r} \frac {d} {d\theta})
+    + \frac {cos \theta cos \varphi} {r} \frac {d} {d\theta} ( - \frac {sin \varphi} {r sin \theta} \frac {d} {d\varphi})
+    - \frac {sin \varphi} {r sin \theta} \frac {d} {d\varphi} (sin \theta cos \varphi \frac{d}{dr})
+    - \frac {sin \varphi} {r sin \theta} \frac {d} {d\varphi} (\frac {cos \theta cos \varphi} {r} \frac {d} {d\theta})
+    - \frac {sin \varphi} {r sin \theta} \frac {d} {d\varphi} (- \frac {sin \varphi} {r sin \theta} \frac {d} {d\varphi})
+    \]
+
+    \[
+    =
+
+    sin^2 \theta cos^2 \varphi \frac{d^2}{dr^2}
+    + sin \theta cos \theta cos^2 \varphi \frac{d}{dr} ( \frac {1} {r} )\frac {d} {d\theta}
+    + \frac {sin \theta cos \theta cos^2 \varphi} {r} \frac{d^2}{dr d\theta}
+
+    - sin \varphi cos \varphi \frac{d}{dr} ( \frac {1} {r} )\frac {d} {d\varphi}
+    - \frac {sin \varphi cos \varphi } {r} \frac {d^2} {dr d\varphi}
+
+    + \frac {cos \theta cos^2 \varphi} {r} \frac {d} {d\theta} (sin \theta) \frac{d}{dr}
+    + \frac {sin \theta cos \theta cos^2 \varphi} {r} \frac {d^2} {dr d\theta}
+
+    + \frac {cos \theta cos^2 \varphi} {r^2} \frac {d} {d\theta} (cos \theta) \frac {d} {d\theta}
+    + \frac {cos^2 \theta cos^2 \varphi} {r^2} \frac {d^2} {d\theta^2}
+
+    - \frac {cos \theta sin \varphi cos \varphi} {r^2} \frac {d} {d\theta} ( \frac {1} {sin \theta} )\frac {d} {d\varphi}
+    + \frac {cos \theta sin \varphi cos \varphi} {r^2 sin \theta} \frac{d^2} {d\theta d\varphi}
+
+    - \frac {sin \varphi} {r} \frac {d} {d\varphi} (cos \varphi) \frac{d}{dr}
+    - \frac {sin \varphi cos \varphi} {r}  \frac{d^2}{dr d\varphi}
+
+    - \frac {cos \theta sin \varphi} {r^2 sin \theta} \frac {d} {d\varphi} (cos \varphi) \frac {d} {d\theta}
+    - \frac {cos \theta sin \varphi cos \varphi} {r^2 sin \theta} \frac {d^2} {d\theta d\varphi}
+
+    + \frac {sin \varphi} {r^2 sin^2 \theta} \frac {d} {d\varphi} (sin \varphi) \frac {d} {d\varphi}
+    + \frac {sin^2 \varphi} {r^2 sin^2 \theta} \frac {d^2} {d\varphi^2}
+
+    \]
+
+    \[
+    =
+
+    sin^2 \theta cos^2 \varphi \frac{d^2}{dr^2}
+    - \frac {sin \theta cos \theta cos^2 \varphi} {r^2} \frac {d} {d\theta}
+    + \frac {sin \theta cos \theta cos^2 \varphi} {r} \frac{d^2}{dr d\theta}
+
+    + \frac {sin \varphi cos \varphi} {r^2} \frac {d} {d\varphi}
+    - \frac {sin \varphi cos \varphi} {r} \frac {d^2} {dr d\varphi}
+
+    + \frac {cos^2 \theta cos^2 \varphi} {r}  \frac{d}{dr}
+    + \frac {sin \theta cos \theta cos^2 \varphi} {r}  \frac {d^2} {dr d\theta}
+
+    - \frac {sin \theta cos \theta cos^2 \varphi} {r^2}  \frac {d} {d\theta}
+    + \frac {cos^2 \theta cos^2 \varphi} {r^2}  \frac {d^2} {d\theta^2}
+
+    + \frac {cos^2 \theta sin \varphi cos \varphi} {r^2 sin^2 \theta}  \frac {d} {d\varphi}
+    - \frac {cos \theta sin \varphi cos \varphi} {r^2 sin \theta}   \frac{d^2} {d\theta d\varphi}
+
+    + \frac {sin^2 \varphi} {r}  \frac{d}{dr}
+    - \frac {sin \varphi cos \varphi} {r}  \frac{d^2}{dr d\varphi}
+
+    + \frac {cos \theta sin^2 \varphi} {r^2 sin \theta}   \frac {d} {d\theta}
+    - \frac {cos \theta sin \varphi cos \varphi} {r^2 sin \theta}  \frac {d^2} {d\theta d\varphi}
+
+    + \frac {sin \varphi cos \varphi} {r^2 sin^2 \theta}   \frac {d} {d\varphi}
+    + \frac {sin^2 \varphi} {r^2 sin^2 \theta}  \frac {d^2} {d\varphi^2}
+
+    \]
+    \[
+    =
+
+    (\frac {cos^2 \theta cos^2 \varphi} {r} + \frac {sin^2 \varphi} {r} ) \frac{d}{dr}
+
+    + ( \frac {cos \theta sin^2 \varphi} {r^2 sin \theta} - \frac {2 sin \theta cos \theta cos^2 \varphi} {r^2} ) \frac {d} {d\theta}
+
+    + ( \frac {sin \varphi cos \varphi} {r^2} + \frac {cos^2 \theta sin \varphi cos \varphi} {r^2 sin^2 \theta} + \frac {sin \varphi cos \varphi} {r^2 sin^2 \theta} ) \frac {d} {d\varphi}
+
+    + sin^2 \theta cos^2 \varphi \frac{d^2}{dr^2}
+
+    + \frac {cos^2 \theta cos^2 \varphi} {r^2}  \frac {d^2} {d\theta^2}
+
+    + \frac {sin^2 \varphi} {r^2 sin^2 \theta}  \frac {d^2} {d\varphi^2}
+
+    + \frac {2 sin \theta cos \theta cos^2 \varphi} {r} \frac {d^2} {dr d\theta}
+
+    - \frac {2 sin \varphi cos \varphi} {r} \frac {d^2} {dr d\varphi}
+
+    - \frac {2 cos \theta sin \varphi cos \varphi} {r^2 sin \theta}   \frac{d^2} {d\theta d\varphi}
+
+    \]
+
+    \[
+    =
+
+    (\frac {cos^2 \theta cos^2 \varphi} {r} + \frac {sin^2 \varphi} {r} ) \frac{d}{dr}
+
+    + ( \frac {cos \theta sin^2 \varphi} {r^2 sin \theta} - \frac {2 sin \theta cos \theta cos^2 \varphi} {r^2} ) \frac {d} {d\theta}
+
+    + \frac { sin^2 \theta sin \varphi cos \varphi + cos^2 \theta sin \varphi cos \varphi + sin \varphi cos \varphi } {r^2 sin^2 \theta} \frac {d} {d\varphi}
+
+    + sin^2 \theta cos^2 \varphi \frac{d^2}{dr^2}
+
+    + \frac {cos^2 \theta cos^2 \varphi} {r^2}  \frac {d^2} {d\theta^2}
+
+    + \frac {sin^2 \varphi} {r^2 sin^2 \theta}  \frac {d^2} {d\varphi^2}
+
+    + \frac {2 sin \theta cos \theta cos^2 \varphi} {r} \frac {d^2} {dr d\theta}
+
+    - \frac {2 sin \varphi cos \varphi} {r} \frac {d^2} {dr d\varphi}
+
+    - \frac {2 cos \theta sin \varphi cos \varphi} {r^2 sin \theta}   \frac{d^2} {d\theta d\varphi}
+    \]
+
+    \[
+    =
+
+    (\frac {cos^2 \theta cos^2 \varphi} {r} + \frac {sin^2 \varphi} {r} ) \frac{d}{dr}
+
+    + ( \frac {cos \theta sin^2 \varphi} {r^2 sin \theta} - \frac {2 sin \theta cos \theta cos^2 \varphi} {r^2} ) \frac {d} {d\theta}
+
+    + \frac { 2 sin \varphi cos \varphi } {r^2 sin^2 \theta} \frac {d} {d\varphi}
+
+    + sin^2 \theta cos^2 \varphi \frac{d^2}{dr^2}
+
+    + \frac {cos^2 \theta cos^2 \varphi} {r^2}  \frac {d^2} {d\theta^2}
+
+    + \frac {sin^2 \varphi} {r^2 sin^2 \theta}  \frac {d^2} {d\varphi^2}
+
+    + \frac {2 sin \theta cos \theta cos^2 \varphi} {r} \frac {d^2} {dr d\theta}
+
+    - \frac {2 sin \varphi cos \varphi} {r} \frac {d^2} {dr d\varphi}
+
+    - \frac {2 cos \theta sin \varphi cos \varphi} {r^2 sin \theta}   \frac{d^2} {d\theta d\varphi}
+    \]
+
+    \[
+    \frac{d}{dy} = sin \theta sin \varphi \frac{d}{dr} + \frac {cos \theta sin \varphi} {r}  \frac {d} {d\theta} + \frac {cos \varphi} {r sin \theta} \frac {d} {d\varphi}
+    \]
+
+    \[
+    \frac{d^2}{dy^2} =
+    sin \theta sin \varphi \frac{d}{dr}(sin \theta sin \varphi \frac{d}{dr} + \frac {cos \theta sin \varphi} {r}  \frac {d} {d\theta} + \frac {cos \varphi} {r sin \theta} \frac {d} {d\varphi})
+    + \frac {cos \theta sin \varphi} {r}  \frac {d} {d\theta} (sin \theta sin \varphi \frac{d}{dr} + \frac {cos \theta sin \varphi} {r}  \frac {d} {d\theta} + \frac {cos \varphi} {r sin \theta} \frac {d} {d\varphi})
+    + \frac {cos \varphi} {r sin \theta} \frac {d} {d\varphi} (sin \theta sin \varphi \frac{d}{dr} + \frac {cos \theta sin \varphi} {r}  \frac {d} {d\theta} + \frac {cos \varphi} {r sin \theta} \frac {d} {d\varphi})
+    \]
+
+    \[
+    =
+    sin \theta sin \varphi \frac{d}{dr}(sin \theta sin \varphi \frac{d}{dr})
+    + sin \theta sin \varphi \frac{d}{dr}(\frac {cos \theta sin \varphi} {r}  \frac {d} {d\theta})
+    + sin \theta sin \varphi \frac{d}{dr}(\frac {cos \varphi} {r sin \theta} \frac {d} {d\varphi})
+
+    + \frac {cos \theta sin \varphi} {r}  \frac {d} {d\theta} (sin \theta sin \varphi \frac{d}{dr})
+    + \frac {cos \theta sin \varphi} {r}  \frac {d} {d\theta} (\frac {cos \theta sin \varphi} {r}  \frac {d} {d\theta})
+    + \frac {cos \theta sin \varphi} {r}  \frac {d} {d\theta} (\frac {cos \varphi} {r sin \theta} \frac {d} {d\varphi})
+
+    + \frac {cos \varphi} {r sin \theta} \frac {d} {d\varphi} (sin \theta sin \varphi \frac{d}{dr})
+    + \frac {cos \varphi} {r sin \theta} \frac {d} {d\varphi} (\frac {cos \theta sin \varphi} {r}  \frac {d} {d\theta})
+    + \frac {cos \varphi} {r sin \theta} \frac {d} {d\varphi} (\frac {cos \varphi} {r sin \theta} \frac {d} {d\varphi})
+    \]
+
+    \[
+    =
+    sin^2 \theta sin^2 \varphi \frac{d^2}{dr^2}
+
+    + sin \theta cos \theta sin^2 \varphi \frac{d}{dr}(\frac {1} {r} ) \frac {d} {d\theta}
+    + \frac {sin \theta cos \theta sin^2 \varphi} {r} \frac {d^2} {dr d\theta}
+
+    + sin \varphi cos \varphi \frac{d}{dr}(\frac {1} {r}) \frac {d} {d\varphi}
+    + \frac {sin \varphi cos \varphi} {r} \frac {d^2} {dr d\varphi}
+
+    + \frac {cos \theta sin^2 \varphi} {r}  \frac {d} {d\theta} (sin \theta) \frac{d}{dr}
+    + \frac {sin \theta cos \theta sin^2 \varphi} {r}   \frac{d^2}{dr d\theta}
+
+    + \frac {cos \theta sin^2 \varphi} {r^2}  \frac {d} {d\theta} (cos \theta)  \frac {d} {d\theta}
+    + \frac {cos^2 \theta sin^2 \varphi} {r^2} \frac {d^2} {d\theta^2}
+
+    + \frac {cos \theta sin \varphi cos \varphi} {r^2}  \frac {d} {d\theta} (\frac {1} {sin \theta}) \frac {d} {d\varphi}
+    + \frac {cos \theta sin \varphi cos \varphi} {r^2 sin \theta}  \frac {d^2} {d\theta d\varphi}
+
+    + \frac {cos \varphi} {r} \frac {d} {d\varphi} ( sin \varphi ) \frac{d}{dr}
+    + \frac {sin \varphi cos \varphi} {r} \frac{d^2}{dr d\varphi}
+
+    + \frac {cos \theta cos \varphi} {r^2 sin \theta} \frac {d} {d\varphi} (sin \varphi) \frac {d} {d\theta}
+    + \frac {cos \theta sin \varphi cos \varphi} {r^2 sin \theta} \frac {d^2} {d\theta d\varphi}
+
+    + \frac {cos \varphi} {r^2 sin^2 \theta} \frac {d} {d\varphi} (cos \varphi) \frac {d} {d\varphi}
+    + \frac {cos^2 \varphi} {r^2 sin^2 \theta} \frac {d^2} {d\varphi^2}
+    \]
+
+    \[
+    =
+    sin^2 \theta sin^2 \varphi \frac{d^2}{dr^2}
+
+    - \frac {sin \theta cos \theta sin^2 \varphi} {r^2} \frac {d} {d\theta}
+    + \frac {sin \theta cos \theta sin^2 \varphi} {r} \frac {d^2} {dr d\theta}
+
+    - \frac {sin \varphi cos \varphi} {r^2} \frac {d} {d\varphi}
+    + \frac {sin \varphi cos \varphi} {r} \frac {d^2} {dr d\varphi}
+
+    + \frac {cos^2 \theta sin^2 \varphi} {r} \frac{d}{dr}
+    + \frac {sin \theta cos \theta sin^2 \varphi} {r}   \frac{d^2}{dr d\theta}
+
+    - \frac {sin \theta cos \theta sin^2 \varphi} {r^2} \frac {d} {d\theta}
+    + \frac {cos^2 \theta sin^2 \varphi} {r^2} \frac {d^2} {d\theta^2}
+
+    - \frac {cos^2 \theta sin \varphi cos \varphi} {r^2 sin^2 \theta} \frac {d} {d\varphi}
+    + \frac {cos \theta sin \varphi cos \varphi} {r^2 sin \theta}  \frac {d^2} {d\theta d\varphi}
+
+    + \frac {cos^2 \varphi} {r} \frac{d}{dr}
+    + \frac {sin \varphi cos \varphi} {r} \frac{d^2}{dr d\varphi}
+
+    + \frac {cos \theta cos^2 \varphi} {r^2 sin \theta} \frac {d} {d\theta}
+    + \frac {cos \theta sin \varphi cos \varphi} {r^2 sin \theta} \frac {d^2} {d\theta d\varphi}
+
+    - \frac {sin \varphi cos \varphi} {r^2 sin^2 \theta} \frac {d} {d\varphi}
+    + \frac {cos^2 \varphi} {r^2 sin^2 \theta} \frac {d^2} {d\varphi^2}
+    \]
+
+    \[
+    =
+    (\frac {cos^2 \theta sin^2 \varphi} {r} + \frac {cos^2 \varphi} {r} ) \frac{d}{dr}
+
+    + ( \frac {cos \theta cos^2 \varphi} {r^2 sin \theta} - \frac {2 sin \theta cos \theta sin^2 \varphi} {r^2} ) \frac {d} {d\theta}
+
+    - ( \frac {sin \varphi cos \varphi} {r^2} + \frac {cos^2 \theta sin \varphi cos \varphi} {r^2 sin^2 \theta} + \frac {sin \varphi cos \varphi} {r^2 sin^2 \theta} ) \frac {d} {d\varphi}
+
+    + sin^2 \theta sin^2 \varphi \frac{d^2}{dr^2}
+
+    + \frac {cos^2 \theta sin^2 \varphi} {r^2} \frac {d^2} {d\theta^2}
+
+    + \frac {cos^2 \varphi} {r^2 sin^2 \theta} \frac {d^2} {d\varphi^2}
+
+    + \frac {2 sin \theta cos \theta sin^2 \varphi} {r} \frac {d^2} {dr d\theta}
+
+    + \frac {2 sin \varphi cos \varphi} {r} \frac{d^2}{dr d\varphi}
+
+    + \frac {2 cos \theta sin \varphi cos \varphi} {r^2 sin \theta} \frac {d^2} {d\theta d\varphi}
+
+    \]
+
+    \[
+    =
+    (\frac {cos^2 \theta sin^2 \varphi} {r} + \frac {cos^2 \varphi} {r} ) \frac{d}{dr}
+
+    + ( \frac {cos \theta cos^2 \varphi} {r^2 sin \theta} - \frac {2 sin \theta cos \theta sin^2 \varphi} {r^2} ) \frac {d} {d\theta}
+
+    - \frac {2 sin \varphi cos \varphi} {r^2 sin^2 \theta} \frac {d} {d\varphi}
+
+    + sin^2 \theta sin^2 \varphi \frac{d^2}{dr^2}
+
+    + \frac {cos^2 \theta sin^2 \varphi} {r^2} \frac {d^2} {d\theta^2}
+
+    + \frac {cos^2 \varphi} {r^2 sin^2 \theta} \frac {d^2} {d\varphi^2}
+
+    + \frac {2 sin \theta cos \theta sin^2 \varphi} {r} \frac {d^2} {dr d\theta}
+
+    + \frac {2 sin \varphi cos \varphi} {r} \frac{d^2}{dr d\varphi}
+
+    + \frac {2 cos \theta sin \varphi cos \varphi} {r^2 sin \theta} \frac {d^2} {d\theta d\varphi}
+    \]
+
+    \[
+    \frac{d}{dz} = cos \theta \frac{d}{dr} - \frac {sin \theta} {r}  \frac {d} {d\theta}
+    \]
+
+    \[
+    \frac{d^2}{dz^2} =
+    cos \theta \frac{d}{dr} (cos \theta \frac{d}{dr} - \frac {sin \theta} {r}  \frac {d} {d\theta} )
+    - \frac {sin \theta} {r}  \frac {d} {d\theta} (cos \theta \frac{d}{dr} - \frac {sin \theta} {r}  \frac {d} {d\theta} )
+    \]
+
+    \[
+    =
+    cos \theta \frac{d}{dr} (cos \theta \frac{d}{dr})
+    - cos \theta \frac{d}{dr} (\frac {sin \theta} {r}  \frac {d} {d\theta} )
+
+    - \frac {sin \theta} {r}  \frac {d} {d\theta} (cos \theta \frac{d}{dr})
+    + \frac {sin \theta} {r}  \frac {d} {d\theta} (\frac {sin \theta} {r}  \frac {d} {d\theta} )
+    \]
+
+    \[
+    =
+    cos^2 \theta \frac{d^2}{dr^2}
+    - sin \theta cos \theta \frac{d}{dr} (\frac {1} {r}  \frac {d} {d\theta} )
+
+    - \frac {sin \theta} {r}  \frac {d} {d\theta} (cos \theta \frac{d}{dr})
+    + \frac {sin \theta} {r^2}  \frac {d} {d\theta} (sin \theta  \frac {d} {d\theta} )
+    \]
+
+    \[
+    =
+    cos^2 \theta \frac{d^2}{dr^2}
+    - sin \theta cos \theta \frac{d}{dr} (\frac {1} {r})  \frac {d} {d\theta}
+    - \frac {sin \theta cos \theta} {r}  \frac {d^2} {dr d\theta}
+
+    - \frac {sin \theta} {r}  \frac {d} {d\theta} (cos \theta) \frac{d}{dr}
+    - \frac {sin \theta cos \theta} {r}   \frac{d^2}{dr d\theta}
+
+
+    + \frac {sin \theta} {r^2}  \frac {d} {d\theta} (sin \theta)  \frac {d} {d\theta}
+    + \frac {sin^2 \theta} {r^2}  \frac {d^2} {d\theta^2}
+    \]
+
+    \[
+    =
+    \frac {sin^2 \theta} {r} \frac{d}{dr}
+
+    + \frac {2sin \theta cos \theta} {r^2} \frac {d} {d\theta}
+
+    + cos^2 \theta \frac{d^2}{dr^2}
+
+    - \frac {2 sin \theta cos \theta} {r}  \frac {d^2} {dr d\theta}
+
+    + \frac {sin^2 \theta} {r^2}  \frac {d^2} {d\theta^2}
+    \]
+
+    \[
+    \frac{d^2}{dx^2} + \frac{d^2}{dy^2} +  \frac{d^2}{dz^2} =
+
+    (\frac {cos^2 \theta cos^2 \varphi} {r} + \frac {sin^2 \varphi} {r} ) \frac{d}{dr}
+
+    + ( \frac {cos \theta sin^2 \varphi} {r^2 sin \theta} - \frac {2 sin \theta cos \theta cos^2 \varphi} {r^2} ) \frac {d} {d\theta}
+
+    + \frac { 2 sin \varphi cos \varphi } {r^2 sin^2 \theta} \frac {d} {d\varphi}
+
+    + sin^2 \theta cos^2 \varphi \frac{d^2}{dr^2}
+
+    + \frac {cos^2 \theta cos^2 \varphi} {r^2}  \frac {d^2} {d\theta^2}
+
+    + \frac {sin^2 \varphi} {r^2 sin^2 \theta}  \frac {d^2} {d\varphi^2}
+
+    + \frac {2 sin \theta cos \theta cos^2 \varphi} {r} \frac {d^2} {dr d\theta}
+
+    - \frac {2 sin \varphi cos \varphi} {r} \frac {d^2} {dr d\varphi}
+
+    - \frac {2 cos \theta sin \varphi cos \varphi} {r^2 sin \theta}   \frac{d^2} {d\theta d\varphi}
+
+    + (\frac {cos^2 \theta sin^2 \varphi} {r} + \frac {cos^2 \varphi} {r} ) \frac{d}{dr}
+
+    + ( \frac {cos \theta cos^2 \varphi} {r^2 sin \theta} - \frac {2 sin \theta cos \theta sin^2 \varphi} {r^2} ) \frac {d} {d\theta}
+
+    - \frac {2 sin \varphi cos \varphi} {r^2 sin^2 \theta} \frac {d} {d\varphi}
+
+    + sin^2 \theta sin^2 \varphi \frac{d^2}{dr^2}
+
+    + \frac {cos^2 \theta sin^2 \varphi} {r^2} \frac {d^2} {d\theta^2}
+
+    + \frac {cos^2 \varphi} {r^2 sin^2 \theta} \frac {d^2} {d\varphi^2}
+
+    + \frac {2 sin \theta cos \theta sin^2 \varphi} {r} \frac {d^2} {dr d\theta}
+
+    + \frac {2 sin \varphi cos \varphi} {r} \frac{d^2}{dr d\varphi}
+
+    + \frac {2 cos \theta sin \varphi cos \varphi} {r^2 sin \theta} \frac {d^2} {d\theta d\varphi}
+
+    + \frac {sin^2 \theta} {r} \frac{d}{dr}
+
+    + \frac {2sin \theta cos \theta} {r^2} \frac {d} {d\theta}
+
+    + cos^2 \theta \frac{d^2}{dr^2}
+
+    - \frac {2 sin \theta cos \theta} {r}  \frac {d^2} {dr d\theta}
+
+    + \frac {sin^2 \theta} {r^2}  \frac {d^2} {d\theta^2}
+    \]
+
+    \[
+    =
+    (\frac {cos^2 \theta cos^2 \varphi} {r} + \frac {sin^2 \varphi} {r} ) \frac{d}{dr}
+    + (\frac {cos^2 \theta sin^2 \varphi} {r} + \frac {cos^2 \varphi} {r} ) \frac{d}{dr}
+    + \frac {sin^2 \theta} {r} \frac{d}{dr}
+
+    + ( \frac {cos \theta sin^2 \varphi} {r^2 sin \theta} - \frac {2 sin \theta cos \theta cos^2 \varphi} {r^2} ) \frac {d} {d\theta}
+    + ( \frac {cos \theta cos^2 \varphi} {r^2 sin \theta} - \frac {2 sin \theta cos \theta sin^2 \varphi} {r^2} ) \frac {d} {d\theta}
+    + \frac {2sin \theta cos \theta} {r^2} \frac {d} {d\theta}
+
+    + \frac { 2 sin \varphi cos \varphi } {r^2 sin^2 \theta} \frac {d} {d\varphi}
+    - \frac {2 sin \varphi cos \varphi} {r^2 sin^2 \theta} \frac {d} {d\varphi}
+
+    + sin^2 \theta cos^2 \varphi \frac{d^2}{dr^2}
+    + sin^2 \theta sin^2 \varphi \frac{d^2}{dr^2}
+    + cos^2 \theta \frac{d^2}{dr^2}
+
+    + \frac {cos^2 \theta cos^2 \varphi} {r^2}  \frac {d^2} {d\theta^2}
+    + \frac {cos^2 \theta sin^2 \varphi} {r^2} \frac {d^2} {d\theta^2}
+    + \frac {sin^2 \theta} {r^2}  \frac {d^2} {d\theta^2}
+
+    + \frac {sin^2 \varphi} {r^2 sin^2 \theta}  \frac {d^2} {d\varphi^2}
+    + \frac {cos^2 \varphi} {r^2 sin^2 \theta} \frac {d^2} {d\varphi^2}
+
+    + \frac {2 sin \theta cos \theta cos^2 \varphi} {r} \frac {d^2} {dr d\theta}
+    + \frac {2 sin \theta cos \theta sin^2 \varphi} {r} \frac {d^2} {dr d\theta}
+    - \frac {2 sin \theta cos \theta} {r}  \frac {d^2} {dr d\theta}
+
+    - \frac {2 sin \varphi cos \varphi} {r} \frac {d^2} {dr d\varphi}
+    + \frac {2 sin \varphi cos \varphi} {r} \frac{d^2}{dr d\varphi}
+
+    - \frac {2 cos \theta sin \varphi cos \varphi} {r^2 sin \theta}   \frac{d^2} {d\theta d\varphi}
+    + \frac {2 cos \theta sin \varphi cos \varphi} {r^2 sin \theta} \frac {d^2} {d\theta d\varphi}
+    \]
+
+    \[
+    =
+    (\frac {cos^2 \theta cos^2 \varphi} {r} + \frac {sin^2 \varphi} {r} + \frac {cos^2 \theta sin^2 \varphi} {r} + \frac {cos^2 \varphi} {r} + \frac {sin^2 \theta} {r} ) \frac{d}{dr}
+
+    + ( \frac {cos \theta sin^2 \varphi} {r^2 sin \theta} - \frac {2 sin \theta cos \theta cos^2 \varphi} {r^2} + \frac {cos \theta cos^2 \varphi} {r^2 sin \theta} - \frac {2 sin \theta cos \theta sin^2 \varphi} {r^2} + \frac {2sin \theta cos \theta} {r^2} ) \frac {d} {d\theta}
+
+    + ( sin^2 \theta cos^2 \varphi + sin^2 \theta sin^2 \varphi + cos^2 \theta ) \frac{d^2}{dr^2}
+
+    + ( \frac {cos^2 \theta cos^2 \varphi} {r^2} + \frac {cos^2 \theta sin^2 \varphi} {r^2} + \frac {sin^2 \theta} {r^2} ) \frac {d^2} {d\theta^2}
+
+    + ( \frac {sin^2 \varphi} {r^2 sin^2 \theta} + \frac {cos^2 \varphi} {r^2 sin^2 \theta} ) \frac {d^2} {d\varphi^2}
+
+    + ( \frac {2 sin \theta cos \theta cos^2 \varphi} {r} + \frac {2 sin \theta cos \theta sin^2 \varphi} {r} - \frac {2 sin \theta cos \theta} {r} ) \frac {d^2} {dr d\theta}
+    \]
+
+    \[
+    =
+    \frac {2} {r} \frac{d}{dr}
+
+    + \frac {cos \theta} {r^2 sin \theta} \frac {d} {d\theta}
+
+    + \frac{d^2}{dr^2}
+
+    + \frac {1} {r^2} \frac {d^2} {d\theta^2}
+
+    + \frac {1} {r^2 sin^2 \theta} \frac {d^2} {d\varphi^2}
+    \]
+
+
+</body>
+</html>
