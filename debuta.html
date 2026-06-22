@@ -6081,26 +6081,37 @@ var $elm$core$Dict$fromList = function (assocs) {
 		$elm$core$Dict$empty,
 		assocs);
 };
+var $author$project$Main$roster = _List_fromArray(
+	[
+		_Utils_Tuple2('にしかぱ', 'でぶ田家が誇る「チーム最速の球速」を持つ絶対的守護神（または剛腕投手）です。エース・にしの精密な制球力からバトンを受け、誰も触れられない弾丸ストレートでちび田家やたか田家を力でねじ伏せた、優勝の立役者です！'),
+		_Utils_Tuple2('でぶじ', 'でぶ田家で最も足の速い伝説の外野手です。その引き締まった体での神速ダッシュは一族の常識を超え、たか田家の成層圏フライも、ちび田家の地を這うライナーも全て追いつき守り抜く、不動のスピードスターです！'),
+		_Utils_Tuple2('うせい', ''),
+		_Utils_Tuple2('でぶろう', ''),
+		_Utils_Tuple2('にし', 'でぶ田家が誇る「チームで最もコントロールが良い」絶対的エースです。針の穴を通す完璧な制球力を持ち、最高の捕手・でぶ則のミットへ狂いなく投げ込み、最速のにしかぱへと繋ぐ、優勝の最大の立役者です！'),
+		_Utils_Tuple2('でぶた', 'ファンから絶大な支持を集めるでぶ田家の「大人気キャッチャー」です。確かなキャッチングでスタンドを魅了します。多少自信過剰なところも。投手もできる。アンダースロー。コントロールはかなり悪い。'),
+		_Utils_Tuple2('でぶのり', ''),
+		_Utils_Tuple2('かぱにし', ''),
+		_Utils_Tuple2('ダルビッシュ', ''),
+		_Utils_Tuple2('たるみっつ', ''),
+		_Utils_Tuple2('でぶもん', '二遊間に君臨した伝説のセカンドです。圧倒的な質量で打球を吸い寄せる「魔手」の守備と、ベンチでうまい棒（たこ焼き味）を睨むだけで敵を圧倒する風格を持ち、一族を頂点へ導いた生ける伝説です。'),
+		_Utils_Tuple2('でぶ吉', ''),
+		_Utils_Tuple2('でぶ美', 'でぶ門監督を育て上げた「日本一厳しい」偉大なる妻です。若き日のでぶ門に妥協なきスパルタノックと徹底した質量管理を課し、彼を伝説の「不動のセカンド」へと進化させた、でぶ田家最強の裏番長です！'),
+		_Utils_Tuple2('でぶ子', ''),
+		_Utils_Tuple2('かぱ', ''),
+		_Utils_Tuple2('とらし', '')
+	]);
 var $author$project$Main$playerInfo = $elm$core$Dict$fromList(
-	_List_fromArray(
-		[
-			_Utils_Tuple2('にしかぱ', 'でぶ田家が誇る「チーム最速の球速」を持つ絶対的守護神（または剛腕投手）です。エース・にしの精密な制球力からバトンを受け、誰も触れられない弾丸ストレートでちび田家やたか田家を力でねじ伏せた、優勝の立役者です！'),
-			_Utils_Tuple2('でぶじ', 'でぶ田家で最も足の速い伝説の外野手です。その引き締まった体での神速ダッシュは一族の常識を超え、たか田家の成層圏フライも、ちび田家の地を這うライナーも全て追いつき守り抜く、不動のスピードスターです！'),
-			_Utils_Tuple2('うせい', ''),
-			_Utils_Tuple2('でぶろう', ''),
-			_Utils_Tuple2('にし', 'でぶ田家が誇る「チームで最もコントロールが良い」絶対的エースです。針の穴を通す完璧な制球力を持ち、最高の捕手・でぶ則のミットへ狂いなく投げ込み、最速のにしかぱへと繋ぐ、優勝の最大の立役者です！'),
-			_Utils_Tuple2('でぶた', 'ファンから絶大な支持を集めるでぶ田家の「大人気キャッチャー」です。確かなキャッチングでスタンドを魅了します。多少自信過剰なところも。投手もできる。アンダースロー。コントロールはかなり悪い。'),
-			_Utils_Tuple2('でぶのり', ''),
-			_Utils_Tuple2('かぱにし', ''),
-			_Utils_Tuple2('ダルビッシュ', ''),
-			_Utils_Tuple2('たるみっつ', ''),
-			_Utils_Tuple2('でぶもん', '二遊間に君臨した伝説のセカンドです。圧倒的な質量で打球を吸い寄せる「魔手」の守備と、ベンチでうまい棒（たこ焼き味）を睨むだけで敵を圧倒する風格を持ち、一族を頂点へ導いた生ける伝説です。'),
-			_Utils_Tuple2('でぶ吉', ''),
-			_Utils_Tuple2('でぶ美', 'でぶ門監督を育て上げた「日本一厳しい」偉大なる妻です。若き日のでぶ門に妥協なきスパルタノックと徹底した質量管理を課し、彼を伝説の「不動のセカンド」へと進化させた、でぶ田家最強の裏番長です！'),
-			_Utils_Tuple2('でぶ子', ''),
-			_Utils_Tuple2('かぱ', ''),
-			_Utils_Tuple2('とらし', '')
-		]));
+	A2(
+		$elm$core$List$indexedMap,
+		F2(
+			function (order, _v0) {
+				var name = _v0.a;
+				var desc = _v0.b;
+				return _Utils_Tuple2(
+					name,
+					_Utils_Tuple2(order, desc));
+			}),
+		$author$project$Main$roster));
 var $author$project$Main$playerFromValue = function (raw) {
 	return A2($elm$core$Dict$member, raw, $author$project$Main$playerInfo) ? $elm$core$Maybe$Just(raw) : $elm$core$Maybe$Nothing;
 };
@@ -6346,7 +6357,18 @@ var $author$project$Main$SelectCoach = F2(
 	function (a, b) {
 		return {$: 'SelectCoach', a: a, b: b};
 	});
-var $author$project$Main$allPlayers = $elm$core$Dict$keys($author$project$Main$playerInfo);
+var $elm$core$List$sortBy = _List_sortBy;
+var $author$project$Main$allPlayers = A2(
+	$elm$core$List$map,
+	$elm$core$Tuple$first,
+	A2(
+		$elm$core$List$sortBy,
+		function (_v0) {
+			var _v1 = _v0.b;
+			var order = _v1.a;
+			return order;
+		},
+		$elm$core$Dict$toList($author$project$Main$playerInfo)));
 var $author$project$Main$coachExternalUsed = function (model) {
 	return _Utils_ap(
 		$author$project$Main$values(model.players),
@@ -7113,11 +7135,18 @@ var $author$project$Main$unselectedPlayers = function (model) {
 		},
 		$author$project$Main$allPlayers);
 };
+var $elm$core$Tuple$second = function (_v0) {
+	var y = _v0.b;
+	return y;
+};
 var $author$project$Main$playerDescription = function (player) {
 	return A2(
 		$elm$core$Maybe$withDefault,
 		'',
-		A2($elm$core$Dict$get, player, $author$project$Main$playerInfo));
+		A2(
+			$elm$core$Maybe$map,
+			$elm$core$Tuple$second,
+			A2($elm$core$Dict$get, player, $author$project$Main$playerInfo)));
 };
 var $author$project$Main$viewUnselectedRow = function (player) {
 	return A2(
