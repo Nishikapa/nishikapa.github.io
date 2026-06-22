@@ -5789,20 +5789,22 @@ var $elm$core$Maybe$map = F2(
 			return $elm$core$Maybe$Nothing;
 		}
 	});
-var $author$project$Main$pitcherSlot = function (_v0) {
-	var d = _v0.a;
-	return A2(
-		$elm$core$Maybe$map,
-		$elm$core$Tuple$first,
-		$elm$core$List$head(
-			A2(
-				$elm$core$List$filter,
-				function (_v1) {
-					var pos = _v1.b;
-					return _Utils_eq(pos, $author$project$Main$Pitcher);
-				},
-				$elm$core$Dict$toList(d))));
-};
+var $author$project$Main$slotWithPosition = F2(
+	function (target, _v0) {
+		var d = _v0.a;
+		return A2(
+			$elm$core$Maybe$map,
+			$elm$core$Tuple$first,
+			$elm$core$List$head(
+				A2(
+					$elm$core$List$filter,
+					function (_v1) {
+						var pos = _v1.b;
+						return _Utils_eq(pos, target);
+					},
+					$elm$core$Dict$toList(d))));
+	});
+var $author$project$Main$pitcherSlot = $author$project$Main$slotWithPosition($author$project$Main$Pitcher);
 var $author$project$Main$playerSlot = F2(
 	function (p, _v0) {
 		var d = _v0.a;
@@ -6072,6 +6074,29 @@ var $author$project$Main$positionsForMode = function (mode) {
 			[$author$project$Main$Catcher, $author$project$Main$First, $author$project$Main$Second, $author$project$Main$Third, $author$project$Main$Shortstop, $author$project$Main$Left, $author$project$Main$Center, $author$project$Main$Right, $author$project$Main$DH]);
 	}
 };
+var $author$project$Main$swapSlots = F3(
+	function (a, b, _v0) {
+		var d = _v0.a;
+		var setOrRemove = F3(
+			function (k, mv, dd) {
+				if (mv.$ === 'Just') {
+					var v = mv.a;
+					return A3($elm$core$Dict$insert, k, v, dd);
+				} else {
+					return A2($elm$core$Dict$remove, k, dd);
+				}
+			});
+		return $author$project$Main$Assignment(
+			A3(
+				setOrRemove,
+				b,
+				A2($elm$core$Dict$get, a, d),
+				A3(
+					setOrRemove,
+					a,
+					A2($elm$core$Dict$get, b, d),
+					d)));
+	});
 var $elm$core$Dict$values = function (dict) {
 	return A3(
 		$elm$core$Dict$foldr,
@@ -6214,7 +6239,7 @@ var $author$project$Main$update = F2(
 							players: A2($author$project$Main$withoutSelected, raw, after.players)
 						});
 				}
-			default:
+			case 'SelectCoach':
 				var role = msg.a;
 				var raw = msg.b;
 				var after = _Utils_update(
@@ -6238,6 +6263,24 @@ var $author$project$Main$update = F2(
 						}(),
 						pitchers: A2($author$project$Main$withoutSelected, raw, model.pitchers),
 						players: A2($author$project$Main$withoutSelected, raw, model.players)
+					});
+				return _Utils_eq(model.dhMode, $author$project$Main$NoDh) ? $author$project$Main$linkBattingToStarter(after) : after;
+			case 'SwapSlots':
+				var a = msg.a;
+				var b = msg.b;
+				return _Utils_update(
+					model,
+					{
+						players: A3($author$project$Main$swapSlots, a, b, model.players),
+						positions: A3($author$project$Main$swapSlots, a, b, model.positions)
+					});
+			default:
+				var a = msg.a;
+				var b = msg.b;
+				var after = _Utils_update(
+					model,
+					{
+						pitchers: A3($author$project$Main$swapSlots, a, b, model.pitchers)
 					});
 				return _Utils_eq(model.dhMode, $author$project$Main$NoDh) ? $author$project$Main$linkBattingToStarter(after) : after;
 		}
@@ -6560,6 +6603,179 @@ var $author$project$Main$viewDhModeChooser = function (current) {
 				A3($author$project$Main$dhRadio, current, $author$project$Main$WithDh, 'DH制あり')
 			]));
 };
+var $elm$core$Maybe$andThen = F2(
+	function (callback, maybeValue) {
+		if (maybeValue.$ === 'Just') {
+			var value = maybeValue.a;
+			return callback(value);
+		} else {
+			return $elm$core$Maybe$Nothing;
+		}
+	});
+var $elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var $author$project$Main$dhNote = function (model) {
+	var _v0 = model.dhMode;
+	if (_v0.$ === 'WithDh') {
+		var name = A2(
+			$elm$core$Maybe$withDefault,
+			'未割当',
+			A2(
+				$elm$core$Maybe$andThen,
+				function (s) {
+					return A2($author$project$Main$valueAt, s, model.players);
+				},
+				A2($author$project$Main$slotWithPosition, $author$project$Main$DH, model.positions)));
+		return A2(
+			$elm$html$Html$div,
+			_List_fromArray(
+				[
+					A2($elm$html$Html$Attributes$style, 'margin-top', '8px'),
+					A2($elm$html$Html$Attributes$style, 'font-size', '14px')
+				]),
+			_List_fromArray(
+				[
+					$elm$html$Html$text('DH：' + name)
+				]));
+	} else {
+		return $elm$html$Html$text('');
+	}
+};
+var $author$project$Main$fielderPlayer = F2(
+	function (model, pos) {
+		return _Utils_eq(pos, $author$project$Main$Pitcher) ? $author$project$Main$starterOf(model.pitchers) : A2(
+			$elm$core$Maybe$andThen,
+			function (s) {
+				return A2($author$project$Main$valueAt, s, model.players);
+			},
+			A2($author$project$Main$slotWithPosition, pos, model.positions));
+	});
+var $author$project$Main$positionLabel = function (pos) {
+	switch (pos.$) {
+		case 'Pitcher':
+			return 'ピッチャー';
+		case 'Catcher':
+			return 'キャッチャー';
+		case 'First':
+			return 'ファースト';
+		case 'Second':
+			return 'セカンド';
+		case 'Third':
+			return 'サード';
+		case 'Shortstop':
+			return 'ショート';
+		case 'Left':
+			return 'レフト';
+		case 'Center':
+			return 'センター';
+		case 'Right':
+			return 'ライト';
+		default:
+			return 'DH';
+	}
+};
+var $author$project$Main$fielderSpot = F2(
+	function (model, _v0) {
+		var pos = _v0.a;
+		var leftPct = _v0.b;
+		var topPct = _v0.c;
+		var label = A2(
+			$elm$core$Maybe$withDefault,
+			$author$project$Main$positionLabel(pos),
+			A2($author$project$Main$fielderPlayer, model, pos));
+		var _v1 = function () {
+			var _v2 = A2($author$project$Main$fielderPlayer, model, pos);
+			if (_v2.$ === 'Just') {
+				return _Utils_Tuple3('#fff', '#000', '1px solid #555');
+			} else {
+				return _Utils_Tuple3('#d9d9d9', '#888', '1px solid #aaa');
+			}
+		}();
+		var bg = _v1.a;
+		var fg = _v1.b;
+		var border = _v1.c;
+		return A2(
+			$elm$html$Html$div,
+			_List_fromArray(
+				[
+					A2($elm$html$Html$Attributes$style, 'position', 'absolute'),
+					A2($elm$html$Html$Attributes$style, 'left', leftPct),
+					A2($elm$html$Html$Attributes$style, 'top', topPct),
+					A2($elm$html$Html$Attributes$style, 'transform', 'translate(-50%, -50%)'),
+					A2($elm$html$Html$Attributes$style, 'background', bg),
+					A2($elm$html$Html$Attributes$style, 'color', fg),
+					A2($elm$html$Html$Attributes$style, 'border', border),
+					A2($elm$html$Html$Attributes$style, 'border-radius', '4px'),
+					A2($elm$html$Html$Attributes$style, 'padding', '2px 6px'),
+					A2($elm$html$Html$Attributes$style, 'font-size', '13px'),
+					A2($elm$html$Html$Attributes$style, 'white-space', 'nowrap')
+				]),
+			_List_fromArray(
+				[
+					$elm$html$Html$text(label)
+				]));
+	});
+var $author$project$Main$fielderSpots = _List_fromArray(
+	[
+		_Utils_Tuple3($author$project$Main$Center, '50%', '8%'),
+		_Utils_Tuple3($author$project$Main$Left, '16%', '20%'),
+		_Utils_Tuple3($author$project$Main$Right, '84%', '20%'),
+		_Utils_Tuple3($author$project$Main$Shortstop, '34%', '42%'),
+		_Utils_Tuple3($author$project$Main$Second, '66%', '42%'),
+		_Utils_Tuple3($author$project$Main$Third, '16%', '58%'),
+		_Utils_Tuple3($author$project$Main$First, '84%', '58%'),
+		_Utils_Tuple3($author$project$Main$Pitcher, '50%', '58%'),
+		_Utils_Tuple3($author$project$Main$Catcher, '50%', '88%')
+	]);
+var $author$project$Main$infieldDiamond = A2(
+	$elm$html$Html$div,
+	_List_fromArray(
+		[
+			A2($elm$html$Html$Attributes$style, 'position', 'absolute'),
+			A2($elm$html$Html$Attributes$style, 'left', '50%'),
+			A2($elm$html$Html$Attributes$style, 'top', '65%'),
+			A2($elm$html$Html$Attributes$style, 'width', '44%'),
+			A2($elm$html$Html$Attributes$style, 'height', '44%'),
+			A2($elm$html$Html$Attributes$style, 'background', '#e3c290'),
+			A2($elm$html$Html$Attributes$style, 'border', '1px solid #b38b4d'),
+			A2($elm$html$Html$Attributes$style, 'transform', 'translate(-50%, -50%) rotate(45deg)')
+		]),
+	_List_Nil);
+var $author$project$Main$viewField = function (model) {
+	return A2(
+		$elm$html$Html$div,
+		_List_Nil,
+		_List_fromArray(
+			[
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						A2($elm$html$Html$Attributes$style, 'position', 'relative'),
+						A2($elm$html$Html$Attributes$style, 'width', '100%'),
+						A2($elm$html$Html$Attributes$style, 'max-width', '360px'),
+						A2($elm$html$Html$Attributes$style, 'height', '320px'),
+						A2($elm$html$Html$Attributes$style, 'background', '#cfe8c0'),
+						A2($elm$html$Html$Attributes$style, 'border', '1px solid #999'),
+						A2($elm$html$Html$Attributes$style, 'overflow', 'hidden')
+					]),
+				A2(
+					$elm$core$List$cons,
+					$author$project$Main$infieldDiamond,
+					A2(
+						$elm$core$List$map,
+						$author$project$Main$fielderSpot(model),
+						$author$project$Main$fielderSpots))),
+				$author$project$Main$dhNote(model)
+			]));
+};
 var $author$project$Main$Closer = {$: 'Closer'};
 var $author$project$Main$Middle = {$: 'Middle'};
 var $author$project$Main$allRoles = _List_fromArray(
@@ -6567,6 +6783,30 @@ var $author$project$Main$allRoles = _List_fromArray(
 var $author$project$Main$SelectPitcher = F2(
 	function (a, b) {
 		return {$: 'SelectPitcher', a: a, b: b};
+	});
+var $author$project$Main$SwapPitchers = F2(
+	function (a, b) {
+		return {$: 'SwapPitchers', a: a, b: b};
+	});
+var $elm$core$Basics$ge = _Utils_ge;
+var $elm$html$Html$button = _VirtualDom_node('button');
+var $elm$html$Html$Attributes$disabled = $elm$html$Html$Attributes$boolProperty('disabled');
+var $author$project$Main$moveButton = F3(
+	function (label, msg, isDisabled) {
+		return A2(
+			$elm$html$Html$button,
+			_List_fromArray(
+				[
+					$elm$html$Html$Events$onClick(msg),
+					$elm$html$Html$Attributes$disabled(isDisabled),
+					A2($elm$html$Html$Attributes$style, 'font-size', '16px'),
+					A2($elm$html$Html$Attributes$style, 'padding', '4px 10px'),
+					A2($elm$html$Html$Attributes$style, 'margin', '0 2px')
+				]),
+			_List_fromArray(
+				[
+					$elm$html$Html$text(label)
+				]));
 	});
 var $author$project$Main$pitcherExternalUsed = function (model) {
 	return _Utils_ap(
@@ -6592,6 +6832,7 @@ var $author$project$Main$roleLabel = function (role) {
 };
 var $author$project$Main$viewPitcherRow = F2(
 	function (model, role) {
+		var key = $author$project$Main$roleKey(role);
 		return A2(
 			$elm$html$Html$tr,
 			_List_Nil,
@@ -6621,9 +6862,32 @@ var $author$project$Main$viewPitcherRow = F2(
 							$elm$core$Basics$identity,
 							$elm$core$Basics$identity,
 							$author$project$Main$allPlayers,
-							$author$project$Main$roleKey(role),
+							key,
 							model.pitchers,
 							$author$project$Main$pitcherExternalUsed(model))
+						])),
+					A2(
+					$elm$html$Html$td,
+					_List_fromArray(
+						[
+							$author$project$Main$cellStyle,
+							A2($elm$html$Html$Attributes$style, 'white-space', 'nowrap'),
+							A2($elm$html$Html$Attributes$style, 'text-align', 'center')
+						]),
+					_List_fromArray(
+						[
+							A3(
+							$author$project$Main$moveButton,
+							'▲',
+							A2($author$project$Main$SwapPitchers, key, key - 1),
+							key <= 0),
+							A3(
+							$author$project$Main$moveButton,
+							'▼',
+							A2($author$project$Main$SwapPitchers, key, key + 1),
+							_Utils_cmp(
+								key,
+								$elm$core$List$length($author$project$Main$allRoles) - 1) > -1)
 						]))
 				]));
 	});
@@ -6661,6 +6925,14 @@ var $author$project$Main$viewPitcherTable = function (model) {
 								_List_fromArray(
 									[
 										$elm$html$Html$text('選手')
+									])),
+								A2(
+								$elm$html$Html$th,
+								_List_fromArray(
+									[$author$project$Main$cellStyle]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('並べ替え')
 									]))
 							]))
 					])),
@@ -6681,6 +6953,10 @@ var $author$project$Main$SelectPosition = F2(
 	function (a, b) {
 		return {$: 'SelectPosition', a: a, b: b};
 	});
+var $author$project$Main$SwapSlots = F2(
+	function (a, b) {
+		return {$: 'SwapSlots', a: a, b: b};
+	});
 var $author$project$Main$battingExternalUsed = function (model) {
 	return _Utils_ap(
 		$author$project$Main$values(model.coaches),
@@ -6692,30 +6968,6 @@ var $author$project$Main$battingExternalUsed = function (model) {
 				return _List_Nil;
 			}
 		}());
-};
-var $author$project$Main$positionLabel = function (pos) {
-	switch (pos.$) {
-		case 'Pitcher':
-			return 'ピッチャー';
-		case 'Catcher':
-			return 'キャッチャー';
-		case 'First':
-			return 'ファースト';
-		case 'Second':
-			return 'セカンド';
-		case 'Third':
-			return 'サード';
-		case 'Shortstop':
-			return 'ショート';
-		case 'Left':
-			return 'レフト';
-		case 'Center':
-			return 'センター';
-		case 'Right':
-			return 'ライト';
-		default:
-			return 'DH';
-	}
 };
 var $author$project$Main$viewRow = F2(
 	function (model, slot) {
@@ -6768,6 +7020,29 @@ var $author$project$Main$viewRow = F2(
 							slot,
 							model.players,
 							$author$project$Main$battingExternalUsed(model))
+						])),
+					A2(
+					$elm$html$Html$td,
+					_List_fromArray(
+						[
+							$author$project$Main$cellStyle,
+							A2($elm$html$Html$Attributes$style, 'white-space', 'nowrap'),
+							A2($elm$html$Html$Attributes$style, 'text-align', 'center')
+						]),
+					_List_fromArray(
+						[
+							A3(
+							$author$project$Main$moveButton,
+							'▲',
+							A2($author$project$Main$SwapSlots, slot, slot - 1),
+							slot <= 1),
+							A3(
+							$author$project$Main$moveButton,
+							'▼',
+							A2($author$project$Main$SwapSlots, slot, slot + 1),
+							_Utils_cmp(
+								slot,
+								$elm$core$List$length($author$project$Main$battingSlots)) > -1)
 						]))
 				]));
 	});
@@ -6984,6 +7259,14 @@ var $author$project$Main$view = function (model) {
 										_List_fromArray(
 											[
 												$elm$html$Html$text('選手')
+											])),
+										A2(
+										$elm$html$Html$th,
+										_List_fromArray(
+											[$author$project$Main$cellStyle]),
+										_List_fromArray(
+											[
+												$elm$html$Html$text('並べ替え')
 											]))
 									]))
 							])),
@@ -6995,6 +7278,18 @@ var $author$project$Main$view = function (model) {
 							$author$project$Main$viewRow(model),
 							$author$project$Main$battingSlots))
 					])),
+				A2(
+				$elm$html$Html$h1,
+				_List_fromArray(
+					[
+						A2($elm$html$Html$Attributes$style, 'font-size', '20px'),
+						A2($elm$html$Html$Attributes$style, 'margin-top', '24px')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text('守備位置図')
+					])),
+				$author$project$Main$viewField(model),
 				A2(
 				$elm$html$Html$h1,
 				_List_fromArray(
