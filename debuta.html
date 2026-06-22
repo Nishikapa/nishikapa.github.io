@@ -6833,6 +6833,9 @@ var $author$project$Main$roleLabel = function (role) {
 var $author$project$Main$viewPitcherRow = F2(
 	function (model, role) {
 		var key = $author$project$Main$roleKey(role);
+		var hasPlayer = !_Utils_eq(
+			A2($author$project$Main$valueAt, key, model.pitchers),
+			$elm$core$Maybe$Nothing);
 		return A2(
 			$elm$html$Html$tr,
 			_List_Nil,
@@ -6880,14 +6883,14 @@ var $author$project$Main$viewPitcherRow = F2(
 							$author$project$Main$moveButton,
 							'▲',
 							A2($author$project$Main$SwapPitchers, key, key - 1),
-							key <= 0),
+							(key <= 0) || (!hasPlayer)),
 							A3(
 							$author$project$Main$moveButton,
 							'▼',
 							A2($author$project$Main$SwapPitchers, key, key + 1),
-							_Utils_cmp(
+							(_Utils_cmp(
 								key,
-								$elm$core$List$length($author$project$Main$allRoles) - 1) > -1)
+								$elm$core$List$length($author$project$Main$allRoles) - 1) > -1) || (!hasPlayer))
 						]))
 				]));
 	});
@@ -6971,6 +6974,11 @@ var $author$project$Main$battingExternalUsed = function (model) {
 };
 var $author$project$Main$viewRow = F2(
 	function (model, slot) {
+		var hasContent = (!_Utils_eq(
+			A2($author$project$Main$valueAt, slot, model.players),
+			$elm$core$Maybe$Nothing)) || (!_Utils_eq(
+			A2($author$project$Main$valueAt, slot, model.positions),
+			$elm$core$Maybe$Nothing));
 		return A2(
 			$elm$html$Html$tr,
 			_List_Nil,
@@ -7035,14 +7043,14 @@ var $author$project$Main$viewRow = F2(
 							$author$project$Main$moveButton,
 							'▲',
 							A2($author$project$Main$SwapSlots, slot, slot - 1),
-							slot <= 1),
+							(slot <= 1) || (!hasContent)),
 							A3(
 							$author$project$Main$moveButton,
 							'▼',
 							A2($author$project$Main$SwapSlots, slot, slot + 1),
-							_Utils_cmp(
+							(_Utils_cmp(
 								slot,
-								$elm$core$List$length($author$project$Main$battingSlots)) > -1)
+								$elm$core$List$length($author$project$Main$battingSlots)) > -1) || (!hasContent))
 						]))
 				]));
 	});
