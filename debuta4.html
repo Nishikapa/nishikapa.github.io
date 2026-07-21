@@ -6524,8 +6524,8 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 			$elm$json$Json$Encode$string(string));
 	});
 var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
-var $author$project$Main$placeholderOption = F2(
-	function (slot, asg) {
+var $author$project$Main$placeholderOption = F3(
+	function (placeholder, slot, asg) {
 		return A2(
 			$elm$html$Html$option,
 			_List_fromArray(
@@ -6538,7 +6538,7 @@ var $author$project$Main$placeholderOption = F2(
 				]),
 			_List_fromArray(
 				[
-					$elm$html$Html$text('選択してください')
+					$elm$html$Html$text(placeholder)
 				]));
 	});
 var $elm$html$Html$select = _VirtualDom_node('select');
@@ -6573,25 +6573,26 @@ var $author$project$Main$valueOption = F6(
 					$elm$html$Html$text(label)
 				]));
 	});
-var $author$project$Main$viewSelect = F7(
-	function (toMsg, valueOf, labelOf, options, slot, asg, externalUsed) {
+var $author$project$Main$viewSelectWith = F9(
+	function (width, placeholder, toMsg, valueOf, labelOf, options, slot, asg, externalUsed) {
 		return A2(
 			$elm$html$Html$select,
 			_List_fromArray(
 				[
 					$elm$html$Html$Events$onInput(toMsg),
-					A2($elm$html$Html$Attributes$style, 'width', '200px'),
+					A2($elm$html$Html$Attributes$style, 'width', width),
 					A2($elm$html$Html$Attributes$style, 'font-size', '16px'),
 					A2($elm$html$Html$Attributes$style, 'padding', '8px')
 				]),
 			A2(
 				$elm$core$List$cons,
-				A2($author$project$Main$placeholderOption, slot, asg),
+				A3($author$project$Main$placeholderOption, placeholder, slot, asg),
 				A2(
 					$elm$core$List$map,
 					A5($author$project$Main$valueOption, valueOf, labelOf, slot, asg, externalUsed),
 					options)));
 	});
+var $author$project$Main$viewSelect = A2($author$project$Main$viewSelectWith, '200px', '選択してください');
 var $author$project$Main$viewCoachRow = F2(
 	function (model, role) {
 		return A2(
@@ -7154,8 +7155,10 @@ var $author$project$Main$viewPlayerRow = F2(
 						]),
 					_List_fromArray(
 						[
-							A7(
-							$author$project$Main$viewSelect,
+							A9(
+							$author$project$Main$viewSelectWith,
+							'90px',
+							'－',
 							$author$project$Main$SelectNumber(key),
 							$elm$core$String$fromInt,
 							$elm$core$String$fromInt,
